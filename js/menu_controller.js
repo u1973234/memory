@@ -1,5 +1,5 @@
-function start_game(){
-	
+function scores(){
+	loadpage("./html/scores.html")
 }
 
 function phaser_game(){
