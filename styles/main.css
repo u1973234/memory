@@ -5,35 +5,62 @@ input[type=number]{
     width: 3rem;
     text-align: center;
 }
-
 #title{
-	font-size: 26px;
-	line-height: 75px;
+	text-align: center;
+	font-size: 60px;
+	font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	margin-top: 50px;
+	height: 30px;
+	line-height: 30px;
 }
-
 .menu-object{
+	margin-left: auto;
+	margin-right: auto;
+	width: 300px;
+	height: 60px;
+	font-size: 17px;
+	margin-top: 10px;
+	padding-bottom: 10px;
+}
+p{
+	font-size: 1.4rem;
+}
+label{
+	font-size: 1.3rem;
+}
+button:active{ 
+	font-size: 18px;
+	width: 275px;
+	height: 70px;
+}
+button:hover:not(:active){
+	font-size: 40px;
+	width: 325px;
+	height: 85px;
+}
+button{
 	display:block;
 	margin-left: auto;
 	margin-right: auto;
 	width: 300px;
 	height: 75px;
-	font-size: 16px;
+	font-size: 30px;
+	color: white;
 	margin-top: 10px;
+	border: none;
 }
-
-p{
-	text-align: center;
+#button1{
+	background-color: #119989;
 }
-
-button.menu-object:active{
-	font-size: 18px;
-	width: 275px;
-	height: 70px;
+#button2{
+	background-color: #4CAF50;
 }
-
-button.menu-object:hover:not(:active){
-	font-size: 22px;
-	width: 325px;
-	height: 85px;
+#button3{
+	background-color: #bf4124;
 }
-
+#button4{
+	background-color: #9c1089;
+}
+#button5{
+	background-color: #3b3b3b;
+}
