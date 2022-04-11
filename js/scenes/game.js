@@ -1,4 +1,8 @@
-
+var options_data = {
+	cards:2, dificulty:"hard"
+};
+var json = localStorage.getItem("config") || '{"cards":2,"dificulty":"hard"}';
+options_data = JSON.parse(json);
 
 class GameScene extends Phaser.Scene {
     constructor (){
@@ -18,21 +22,27 @@ class GameScene extends Phaser.Scene {
 		this.load.image('to', '../resources/to.png');
 	}
     create (){	
-		let arraycards = ['co', 'sb', 'co', 'sb'];
+		let arraycards = [];
+		if (options_data.cards == 3) arraycards = ['co', 'sb', 'co', 'sb', 'tb', 'tb'];
+		else if (options_data.card == 4) arraycards = ['co', 'sb', 'co', 'sb', 'tb', 'tb', 'cb', 'cb']
+		else arraycards = ['co', 'sb', 'co', 'sb'];
+		
 		this.cameras.main.setBackgroundColor(0xBFFCFF);
 		
-		this.add.image(250, 300, arraycards[0]);
-		this.add.image(350, 300, arraycards[1]);
-		this.add.image(450, 300, arraycards[2]);
-		this.add.image(550, 300, arraycards[3]);
-		
+		let space = 150;
+		for (let i = 0; i < options_data.cards*2; i++){
+			this.add.image(space, 300, arraycards[i]);
+			space += 100;
+		}
+
 		this.cards = this.physics.add.staticGroup();
 		
-		this.cards.create(250, 300, 'back');
-		this.cards.create(350, 300, 'back');
-		this.cards.create(450, 300, 'back');
-		this.cards.create(550, 300, 'back');
-		
+		space = 150;
+		for (let i = 0; i < options_data.cards*2; i++){
+			this.cards.create(space, 300, 'back');
+			space += 100;
+		}
+
 		let i = 0;
 		this.cards.children.iterate((card)=>{
 			card.card_id = arraycards[i];
@@ -42,7 +52,9 @@ class GameScene extends Phaser.Scene {
 				card.disableBody(true,true);
 				if (this.firstClick){
 					if (this.firstClick.card_id !== card.card_id){
-						this.score -= 20;
+						if(options_data.dificulty=="hard") this.score -= 50;
+						else if(options_data.dificulty=="easy") this.score -= 10;
+						this.score -= 25;
 						this.firstClick.enableBody(false, 0, 0, true, true);
 						card.enableBody(false, 0, 0, true, true);
 						if (this.score <= 0){
@@ -52,7 +64,7 @@ class GameScene extends Phaser.Scene {
 					}
 					else{
 						this.correct++;
-						if (this.correct >= 2){
+						if (this.correct >= options_data.cards){
 							alert("You Win with " + this.score + " points.");
 							loadpage("../");
 						}
