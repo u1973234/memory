@@ -1,3 +1,5 @@
+
+
 class GameScene extends Phaser.Scene {
     constructor (){
         super('GameScene');
@@ -6,7 +8,6 @@ class GameScene extends Phaser.Scene {
 		this.score = 100;
 		this.correct = 0;
     }
-
     preload (){	
 		this.load.image('back', '../resources/back.png');
 		this.load.image('cb', '../resources/cb.png');
@@ -16,7 +17,6 @@ class GameScene extends Phaser.Scene {
 		this.load.image('tb', '../resources/tb.png');
 		this.load.image('to', '../resources/to.png');
 	}
-	
     create (){	
 		let arraycards = ['co', 'sb', 'co', 'sb'];
 		this.cameras.main.setBackgroundColor(0xBFFCFF);
@@ -46,7 +46,7 @@ class GameScene extends Phaser.Scene {
 						this.firstClick.enableBody(false, 0, 0, true, true);
 						card.enableBody(false, 0, 0, true, true);
 						if (this.score <= 0){
-							alert("Game Over");
+							alert("Game over");
 							loadpage("../");
 						}
 					}
@@ -64,8 +64,7 @@ class GameScene extends Phaser.Scene {
 				}
 			}, card);
 		});
-	}
-	
+	}	
 	update (){	}
 }
 
