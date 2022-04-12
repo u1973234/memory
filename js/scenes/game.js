@@ -28,13 +28,13 @@ class GameScene extends Phaser.Scene {
 		else arraycards = ['co', 'sb', 'co', 'sb'];
 		
 		this.cameras.main.setBackgroundColor(0xBFFCFF);
-		
+
 		let space = 150;
 		for (let i = 0; i < options_data.cards*2; i++){
 			this.add.image(space, 300, arraycards[i]);
 			space += 100;
 		}
-
+		
 		this.cards = this.physics.add.staticGroup();
 		
 		space = 150;
@@ -42,6 +42,8 @@ class GameScene extends Phaser.Scene {
 			this.cards.create(space, 300, 'back');
 			space += 100;
 		}
+		
+		this.time.delayedCall(3000,this.showCards, this);
 
 		let i = 0;
 		this.cards.children.iterate((card)=>{
@@ -77,6 +79,9 @@ class GameScene extends Phaser.Scene {
 			}, card);
 		});
 	}	
+	showCards (){
+		alert("hey");
+	}
 	update (){	}
 }
 
