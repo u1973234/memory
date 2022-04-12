@@ -24,7 +24,7 @@ class GameScene extends Phaser.Scene {
     create (){	
 		let arraycards = [];
 		if (options_data.cards == 3) arraycards = ['co', 'sb', 'co', 'sb', 'tb', 'tb'];
-		else if (options_data.card == 4) arraycards = ['co', 'sb', 'co', 'sb', 'tb', 'tb', 'cb', 'cb']
+		else if (options_data.cards == 4) arraycards = ['co', 'sb', 'co', 'sb', 'to', 'to', 'cb', 'cb']
 		else arraycards = ['co', 'sb', 'co', 'sb'];
 		
 		this.cameras.main.setBackgroundColor(0xBFFCFF);
