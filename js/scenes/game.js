@@ -80,7 +80,7 @@ class GameScene extends Phaser.Scene {
 		});
 	}	
 	showCards (){
-		alert("hey");
+		//alert("hey");
 	}
 	update (){	}
 }
