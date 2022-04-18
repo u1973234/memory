@@ -56,6 +56,10 @@ class GameScene extends Phaser.Scene {
 							if(options_data.dificulty=="hard") this.score -= 50;
 							else if(options_data.dificulty=="easy") this.score -= 10;
 							this.score -= 25;
+							this.cards.setVisible(false);
+							this.time.delayedCall(1000,()=>{
+								this.cards.setVisible(true);
+							})
 							this.firstClick.enableBody(false, 0, 0, true, true);
 							card.enableBody(false, 0, 0, true, true);
 							if (this.score <= 0){
@@ -78,6 +82,6 @@ class GameScene extends Phaser.Scene {
 				}, card);
 			});
 		});
-	}	
+	}
 	update (){	}
 }
