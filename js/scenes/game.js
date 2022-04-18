@@ -26,6 +26,7 @@ class GameScene extends Phaser.Scene {
 		if (options_data.cards == 3) arraycards = ['co', 'sb', 'co', 'sb', 'tb', 'tb'];
 		else if (options_data.cards == 4) arraycards = ['co', 'sb', 'co', 'sb', 'to', 'to', 'cb', 'cb']
 		else arraycards = ['co', 'sb', 'co', 'sb'];
+		Phaser.Utils.Array.Shuffle(arraycards);
 		
 		this.cameras.main.setBackgroundColor(0xBFFCFF);
 
@@ -37,49 +38,46 @@ class GameScene extends Phaser.Scene {
 		
 		this.cards = this.physics.add.staticGroup();
 		
-		this.time.delayedCall(3000,function (){
-			alert("hey");
+		this.time.delayedCall(3000,()=>{
 			space = 150;
 			for (let i = 0; i < options_data.cards*2; i++){
 				this.cards.create(space, 300, 'back');
 				space += 100;
 			}
-		}, this);
-
-		let i = 0;
-		this.cards.children.iterate((card)=>{
-			card.card_id = arraycards[i];
-			i++;
-			card.setInteractive();
-			card.on('pointerup', () => {
-				card.disableBody(true,true);
-				if (this.firstClick){
-					if (this.firstClick.card_id !== card.card_id){
-						if(options_data.dificulty=="hard") this.score -= 50;
-						else if(options_data.dificulty=="easy") this.score -= 10;
-						this.score -= 25;
-						this.firstClick.enableBody(false, 0, 0, true, true);
-						card.enableBody(false, 0, 0, true, true);
-						if (this.score <= 0){
-							alert("Game over");
-							loadpage("../");
+			let i = 0;
+			this.cards.children.iterate((card)=>{
+				card.card_id = arraycards[i];
+				i++;
+				card.setInteractive();
+				card.on('pointerup', () => {
+					card.disableBody(true,true);
+					if (this.firstClick){
+						if (this.firstClick.card_id !== card.card_id){
+							if(options_data.dificulty=="hard") this.score -= 50;
+							else if(options_data.dificulty=="easy") this.score -= 10;
+							this.score -= 25;
+							this.firstClick.enableBody(false, 0, 0, true, true);
+							card.enableBody(false, 0, 0, true, true);
+							if (this.score <= 0){
+								alert("Game over");
+								loadpage("../");
+							}
 						}
+						else{
+							this.correct++;
+							if (this.correct >= options_data.cards){
+								alert("You Win with " + this.score + " points.");
+								loadpage("../");
+							}
+						}
+						this.firstClick = null;
 					}
 					else{
-						this.correct++;
-						if (this.correct >= options_data.cards){
-							alert("You Win with " + this.score + " points.");
-							loadpage("../");
-						}
+						this.firstClick = card;
 					}
-					this.firstClick = null;
-				}
-				else{
-					this.firstClick = card;
-				}
-			}, card);
+				}, card);
+			});
 		});
 	}	
 	update (){	}
 }
-
