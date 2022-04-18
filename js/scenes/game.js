@@ -37,13 +37,14 @@ class GameScene extends Phaser.Scene {
 		
 		this.cards = this.physics.add.staticGroup();
 		
-		space = 150;
-		for (let i = 0; i < options_data.cards*2; i++){
-			this.cards.create(space, 300, 'back');
-			space += 100;
-		}
-		
-		this.time.delayedCall(3000,this.showCards, this);
+		this.time.delayedCall(3000,function (){
+			alert("hey");
+			space = 150;
+			for (let i = 0; i < options_data.cards*2; i++){
+				this.cards.create(space, 300, 'back');
+				space += 100;
+			}
+		}, this);
 
 		let i = 0;
 		this.cards.children.iterate((card)=>{
@@ -79,9 +80,6 @@ class GameScene extends Phaser.Scene {
 			}, card);
 		});
 	}	
-	showCards (){
-		//alert("hey");
-	}
 	update (){	}
 }
 
