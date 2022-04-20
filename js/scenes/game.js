@@ -60,14 +60,14 @@ class GameScene extends Phaser.Scene {
 							this.time.delayedCall(1000,()=>{
 								this.cards.setVisible(true);
 							})
-							this.firstClick.enableBody(false, 0, 0, true, true);
-							card.enableBody(false, 0, 0, true, true);
 							if (this.score <= 0){
 								alert("Game over");
 								loadpage("../");
 							}
 						}
 						else{
+							card.destroy();
+							this.firstClick.destroy();
 							this.correct++;
 							if (this.correct >= options_data.cards){
 								alert("You Win with " + this.score + " points.");
