@@ -7,15 +7,15 @@ function phaser_games(){
 }
 
 function phaser_game_one(){
-	loadpage("./html/phasergameOne.html");
+	loadpage("./phasergameOne.html");
 }
 
 function phaser_game_two(){
-	loadpage("./html/phasergameTwo.html");
+	loadpage("./phasergameTwo.html");
 }
 
 function menu(){
-	loadpage("./index.html");
+	loadpage("../");
 }
 
 function exit (){
