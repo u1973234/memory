@@ -11,6 +11,10 @@ function phaser_game_one(){
 }
 
 function phaser_game_two(){
+	var round_data = {
+		cards:2, dificulty:"easy"
+	};
+	localStorage.setItem("round", JSON.stringify(round_data));
 	loadpage("./phasergameTwo.html");
 }
 
