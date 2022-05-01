@@ -1,5 +1,5 @@
 var round_data = {
-	cards:2, dificulty:"hard"
+	cards:2, dificulty:"hard", player:"", maxScore:0, actScore:0, number:0
 };
 var json = localStorage.getItem("round") || '{"cards":2,"dificulty":"easy"}';
 round_data = JSON.parse(json);
@@ -87,6 +87,13 @@ class GameScene extends Phaser.Scene {
 							})
 							if (this.score <= 0){
 								alert("Game Over");
+								if (round_data.actScore > round_data.maxScore){
+									var player_data = {
+										name:round_data.player, score:round_data.maxScore
+									};
+									var lastPlayerId = "pl"+round_data.number; 
+									localStorage.setItem(lastPlayerId, player_data);
+								}
 								loadpage("../");
 							}
 						}
@@ -97,6 +104,7 @@ class GameScene extends Phaser.Scene {
 							if (this.correct >= round_data.cards){
 								next_round();
 								alert("You Win with " + this.score + " points.");
+								round_data.actScore += this.actScore;
 								loadpage("./phasergameTwo.html");
 							}
 						}

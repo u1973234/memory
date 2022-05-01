@@ -21,4 +21,3 @@ var load_obj = function(){
 	});
 	return {}; 
 }();
-

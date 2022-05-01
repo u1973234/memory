@@ -3,6 +3,12 @@ function scores(){
 }
 
 function phaser_games(){
+	
+	var newName = prompt("User name");
+	if (namePl != newName){
+		numberPl++;
+		namePl = newName;
+	}
 	loadpage("./html/gameSelector.html");
 }
 
@@ -12,7 +18,7 @@ function phaser_game_one(){
 
 function phaser_game_two(){
 	var round_data = {
-		cards:2, dificulty:"easy"
+		cards:2, dificulty:"easy", player:namePl, maxScore:maxScorePl, actScore:0, number:numberPl
 	};
 	localStorage.setItem("round", JSON.stringify(round_data));
 	loadpage("./phasergameTwo.html");
@@ -23,10 +29,10 @@ function menu(){
 }
 
 function exit (){
-	if (name != ""){
-		alert("Leaving " + name + "'s game");
+	if (namePl != ""){
+		alert("Leaving " + namePl + "'s game");
 	}
-	name = "";
+	namePl = "";
 }
 
 function options(){
