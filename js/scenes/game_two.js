@@ -1,7 +1,7 @@
 var round_data = {
 	cards:2, dificulty:"hard", player:"", maxScore:0, actScore:0, number:0
 };
-var json = localStorage.getItem("round") || '{"cards":2,"dificulty":"easy"}';
+var json = localStorage.getItem("round") || '{"cards":2,"dificulty":"easy", "player":"", "maxScore":0, "actScore":0, "number":0}';
 round_data = JSON.parse(json);
 
 var next_round = function(){
@@ -104,7 +104,7 @@ class GameScene extends Phaser.Scene {
 							if (this.correct >= round_data.cards){
 								next_round();
 								alert("You Win with " + this.score + " points.");
-								round_data.actScore += this.actScore;
+								round_data.actScore += this.score;
 								loadpage("./phasergameTwo.html");
 							}
 						}

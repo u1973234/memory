@@ -6,8 +6,9 @@ function phaser_games(){
 	
 	var newName = prompt("User name");
 	if (namePl != newName){
-		numberPl++;
+		numberPl += 1;
 		namePl = newName;
+		maxScorePl = 0
 	}
 	loadpage("./html/gameSelector.html");
 }
